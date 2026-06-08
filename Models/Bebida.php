@@ -54,5 +54,25 @@ public function get(){
         $this->valor = $row['valor'];
         $this->categoria = $row['categoria'];
 }
+  public function add()
+    {
+        $query = 'INSERT INTO ' . $this->tabela . ' (nome, qtd, valor, categoria) ' .
+            ' VALUES (:nome, :qtd, :valor, :categoria)';
 
-} 
+        // Preparar a query
+        $stmt = $this->db->prepare($query);
+
+        // Vincular os parâmetros
+        $stmt->bindParam(':nome', $this->nome);
+        $stmt->bindParam(':qtd', $this->qtd);
+        $stmt->bindParam(':valor', $this->valor);
+        $stmt->bindParam(':categoria', $this->categoria);
+
+        // Executar a query
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+
+    }
+}
