@@ -31,7 +31,8 @@ try {
                 "id" => $bebida->id,
                 "nome" => $bebida->nome,
                 "valor" => $bebida->valor,
-                "qtd" => $bebida->qtd
+                "qtd" => $bebida->qtd,
+                "categoria" => $bebida->categoria
             );
  
             http_response_code(200);  

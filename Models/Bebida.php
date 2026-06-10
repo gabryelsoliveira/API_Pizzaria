@@ -75,4 +75,27 @@ public function get(){
         return false;
 
     }
+       public function update(){
+
+     // Query de atualização
+            $query = 'UPDATE ' . $this->tabela. ' SET nome=:nome, qtd=:qtd, valor=:valor, categoria=:categoria WHERE idBebida=:id';
+   
+            // Preparar a query
+            $stmt = $this->db->prepare($query);
+                 
+            // Vincular os parâmetros
+            $stmt->bindParam(':nome', $this->nome);
+            $stmt->bindParam(':qtd', $this->qtd);
+            $stmt->bindParam(':valor', $this->valor);
+            $stmt->bindParam(':categoria', $this->categoria);
+            $stmt->bindParam(':id', $this->id);
+   
+            // Executar a query
+            if($stmt->execute()) {
+                return true;
+            }
+         
+            return false;
+
+    }
 }

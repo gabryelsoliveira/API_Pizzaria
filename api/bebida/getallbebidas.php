@@ -28,7 +28,8 @@ try {
                 "id" => $idBebida,
                 "nome" => $nome,
                 "qtd" => $qtd,
-                "valor" => $valor
+                "valor" => $valor,
+                "categoria" => $categoria,
             );
             array_push($bebidas_arr, $bebida_item);
         }
