@@ -31,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Atribuir os valores ao objeto Pizza
             $pizza->nome = $data->nome;
             $pizza->ingredientes = $data->ingredientes;
-            $pizza->valor = $data->valor;
- 
+            //$pizza->valor = $data->valor;
+            $pizza->setValor($data->valor);
+            
             // Criar a pizza
             if ($pizza->add()) {
                 http_response_code(201);

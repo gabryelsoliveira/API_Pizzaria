@@ -38,7 +38,7 @@ try {
             "id" => $pizza->id,
             "nome" => $pizza->nome,
             "ingredientes" => $pizza->ingredientes,
-            "valor" => $pizza->valor
+            "valor" => $pizza->getValor()
         );
 
         http_response_code(200);

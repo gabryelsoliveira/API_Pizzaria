@@ -98,4 +98,21 @@ public function get(){
             return false;
 
     }
+      public function delete(){
+        // Query de exclusão
+        $query = 'DELETE FROM ' . $this->tabela . ' WHERE idBebida = :id';
+ 
+        // Preparar a query
+        $stmt = $this->db->prepare($query);
+ 
+        // Vincular o ID
+        $stmt->bindParam(':id', $this->id);
+ 
+        // Executar a query
+        if ($stmt->execute()) {
+            return true;
+        }
+         
+        return false;
+    }
 }

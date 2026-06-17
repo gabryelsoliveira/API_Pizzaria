@@ -9,11 +9,11 @@ class Pizza
 {
     public $id;
 
-    public $nome;
+    private string $nome;
 
     public $ingredientes;
 
-    public $valor;
+    private float $valor;
 
     private $db;
 
@@ -24,6 +24,32 @@ class Pizza
     public function __construct($db)
     {
         $this->db = $db;
+    }
+
+    //Getter and Setters
+    public function getValor()
+    {
+        return $this->valor;
+    }
+
+    public function setValor(float $valor)
+    {
+        if($valor <= 0) {
+            throw new Exception("Valor deve ser maior que zero.");
+        }
+        $this->valor = $valor;
+    }
+    
+    public function __get(string $nome){
+        return $this->$nome;
+    }
+
+    public function __set(string $nome, string $valor){
+        
+    if(strlen(trim($valor))<3){
+        throw new Exception("Nome da pizza deve conter pelo menos 3 caracteres.");
+    }
+    $this->$nome = trim($valor);
     }
 
     public function getall()
@@ -110,7 +136,26 @@ class Pizza
             }
          
             return false;
+    }
 
+    public function delete(){
+        // Query de exclusão
+        $query = 'DELETE FROM ' . $this->tabela . ' WHERE idPizza = :id';
+ 
+        // Preparar a query
+        $stmt = $this->db->prepare($query);
+ 
+        // Vincular o ID
+        $stmt->bindParam(':id', $this->id);
+ 
+        // Executar a query
+        if ($stmt->execute()) {
+            return true;
+        }
+         
+        return false;
     }
 
 }
+ 
+ 
